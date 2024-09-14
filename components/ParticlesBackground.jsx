@@ -1,3 +1,4 @@
+
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 // import { loadAll } from "@/tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
@@ -7,7 +8,7 @@ import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSl
 
 
 
-const ParticlesBackground = (props) => {
+const ParticlesComponent = (props) => {
 
   const [init, setInit] = useState(false);
   // this should be run only once per application lifetime
@@ -32,23 +33,21 @@ const ParticlesBackground = (props) => {
 
   const options = useMemo(
     () => ({
-      fpsLimit: 300,
-      lifetime: 0.1,
       background: {
         color: {
           value: "#00000",
         },
       },
+      fpsLimit: 120,
       interactivity: {
-        detectOn: "canvas",
         events: {
           onClick: {
-            enable: false,
-            mode: "remove",
+            enable: true,
+            mode: "repulse",
           },
           onHover: {
             enable: true,
-            mode: 'repulse',
+            mode: 'grab',
           },
         },
         modes: {
@@ -63,64 +62,39 @@ const ParticlesBackground = (props) => {
       },
       particles: {
         color: {
-          value: "#919191",
+          value: "#FFFFFF",
         },
         links: {
-          color: "#919191",
+          color: "#FFFFFF",
           distance: 150,
           enable: true,
-          opacity: 0.4,
+          opacity: 0.3,
           width: 1,
         },
         move: {
           direction: "none",
           enable: true,
-          outModes: "out",
+          outModes: {
+            default: "bounce",
+          },
           random: true,
-          speed: 10,
+          speed: 1,
           straight: false,
         },
         number: {
-          value: 500,
           density: {
             enable: true,
-            value_area: 1600
-          }
+          },
+          value: 30,
         },
         opacity: {
-          value: 0.5,
-          random: false,
-          anim: {
-            enable: false,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false
-          }
+          value: 1.0,
         },
         shape: {
           type: "circle",
-          stroke: {
-            width: 0,
-            color: "#000000"
-          },
-          polygon: {
-            nb_sides: 5
-          },
-          image: {
-            src: "img/github.svg",
-            width: 100,
-            height: 100
-          }
         },
         size: {
-          value: {min: 0.1, max:3},
-          random: true,
-          anim: {
-            enable: true,
-            speed: 80,
-            size_min: 0.1,
-            sync: false
-          }
+          value: { min: 1, max: 3 },
         },
       },
       detectRetina: true,
@@ -132,4 +106,4 @@ const ParticlesBackground = (props) => {
   return <Particles id={props.id} init={particlesLoaded} options={options}></Particles>
 };
 
-export default ParticlesBackground;
+export default ParticlesComponent;
