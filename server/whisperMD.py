@@ -111,7 +111,7 @@ def metadata(text : str):
     url = 'https://api.openai.com/v1/chat/completions'
     headers = {
     "Content-Type" : "application/json",
-    "Authorization": ""
+    "Authorization": "Bearer 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"
     }
 
     diagnosis  = text
