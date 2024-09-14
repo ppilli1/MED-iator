@@ -1,49 +1,52 @@
-import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { navigation } from "../constants";
-import taxCutImage from "../assets/taxCut.jpg"
+import { NAVIGATION_LINKS } from "../constants";
+import MEDiator from "../assets/MED-iator.png";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const pathname = useLocation();
-  const [openNavigation, setOpenNavigation] = useState(false);
-
-  const toggleNavigation = () => {
-    setOpenNavigation(!openNavigation);
-  };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-transparent">
-      <nav className="container flex items-center justify-between py-7">
-        <Link to="/" className="text-2xl font-bold text-gray-400 hover:text-blue-400 ease-in-out duration-300">
-          TaxCut
-        </Link>
-        <Link to = "/" className = "hover:opacity-70 ease-in-out duration-300">
-          <img
-            className='absolute left-[15.5rem] top-[1.2rem] rounded-full h-12 w-12 mx-auto object-cover'
-            src={taxCutImage}
-            alt="profile pic"
-          />
-        </Link>
-        <ul
-          className={`${
-            openNavigation ? "block" : "hidden"
-          } lg:flex lg:items-center space-x-15`}
-        >
-          {navigation.map((item) => (
-            <li key={item.id} className="mr-4 lg:mr-6">
-              <Link
-                to={item.url}
-                className={`text-gray-400 hover:text-blue-400 ease-in-out duration-300 uppercase font-medium ${
-                  pathname.hash === item.id ? "text-blue-400" : ""
-                }`}
-              >
-                {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <div className="bg-transparent">
+      <nav className="fixed left-0 right-0 top-4 z-50">
+        {/* Desktop Menu */}
+        <div className="mx-auto hidden max-w-3xl items-center justify-center rounded-lg border border-slate-50/30 bg-black/20 py-3 backdrop-blur-lg lg:flex">
+          <div className="flex items-center justify-between gap-2">
+            {/* <div> */}
+            <Link
+              to="/"
+              className="roboto-slab-normal text-3xl tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out"
+            >
+              MED-iator
+            </Link>
+            <Link to="/" className="hover:opacity-50 ease-in-out duration-300">
+              <img
+                className="rounded-full object-cover mx-auto h-12 w-12 border border-fuchsia-800"
+                src={MEDiator}
+                alt="MED-iator"
+              />
+            </Link>
+          </div>
+          {/* </div> */}
+          <div className="ml-8">
+            <ul className="lg:flex lg:items-center space-x-4">
+              {NAVIGATION_LINKS.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item.href}
+                    className={`text-md font-light tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out ${
+                      pathname.hash === index ? "text-fuchsia-300" : ""
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </nav>
-    </header>
+    </div>
   );
 };
 
