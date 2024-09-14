@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { FaArrowUp } from "react-icons/fa";
 
+const API_KEY =
+  "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";
 
 const MD = () => {
   const [messages, setMessages] = useState([
