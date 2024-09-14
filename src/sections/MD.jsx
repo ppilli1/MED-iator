@@ -103,7 +103,7 @@ const MD = () => {
       <div className="flex flex-wrap mt-[100px]">
         <div className="w-1/2">
           <div className="flex flex-col items-center justify-center">
-            <div className="box-border h-[375px] w-[600px] border-[4px] border-slate-600 hover:border-slate-400 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[50px]">
+            <div className="box-border h-[375px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[50px]">
               <div className = "overflow-y-auto p-4">
                 {messages.map((message, index) => (
                     <div key = {index} className = {`flex mb-4 ${
@@ -114,7 +114,7 @@ const MD = () => {
                     >
                         <div className = {`${
                             message.direction === "incoming"
-                                ? "bg-[#E5E5EA] text-black"
+                                ? "bg-pink-500 text-white"
                                 : "text-blue"
                         } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}>
                             {message.message}
@@ -123,7 +123,7 @@ const MD = () => {
                 ))}
                 {typing && (
                 <div className="flex justify-start mb-4">
-                  <div className="bg-[#E5E5EA] text-black p-3 rounded-[1.25rem] max-w-xs shadow-lg">
+                  <div className="bg-pink-500 text-white p-3 rounded-[1.25rem] max-w-xs shadow-lg">
                     ChatGPT is typing...
                   </div>
                 </div>
@@ -131,7 +131,7 @@ const MD = () => {
               <div ref={messagesEndRef} />
               </div>
             </div>
-            <div className="box-border h-[375px] w-[600px] border-[4px] border-slate-600 hover:border-slate-400 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
+            <div className="box-border h-[375px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
               <div className = "overflow-y-auto p-4">
                 {messages.map((message, index) => (
                     <div key = {index} className = {`flex mb-4 ${
@@ -142,7 +142,7 @@ const MD = () => {
                     >
                         <div className = {`${
                             message.direction === "incoming"
-                                ? "bg-[#E5E5EA] text-black"
+                                ? "bg-pink-500 text-white"
                                 : "text-blue"
                         } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}>
                             {message.message}
@@ -151,7 +151,7 @@ const MD = () => {
                 ))}
                 {typing && (
                 <div className="flex justify-start mb-4">
-                  <div className="bg-[#E5E5EA] text-black p-3 rounded-[1.25rem] max-w-xs shadow-lg">
+                  <div className="bg-pink-500 text-white p-3 rounded-[1.25rem] max-w-xs shadow-lg">
                     ChatGPT is typing...
                   </div>
                 </div>
@@ -213,7 +213,7 @@ const MD = () => {
                 </textarea>
                 <div className="flex py-3 items-start justify-end w-[8%] mr-3">
                   <button
-                    className={`rounded-3xl bg-pink-500 p-1 hover:bg-pink-600 active:bg-pink-600/50 transition-colors duration-300 focus:outline-none ${
+                    className={`rounded-3xl bg-pink-500 p-1 hover:bg-pink-700 active:bg-pink-700/50 transition-colors duration-300 focus:outline-none ${
                       isSending ? "cursor-not-allowed opacity-50" : ""
                     }`}
                     onClick={handleSend}
