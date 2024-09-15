@@ -3,7 +3,7 @@ import React from 'react'
 const PatientGame = () => {
   return (
     <div className="w-screen h-screen">
-      <iframe src='https://my.spline.design/jumpdomi-70e6fbb39579c9c6e73db201aa5c0b22/' frameborder='0' width='100%' height='100%'></iframe>
+      <iframe src='https://my.spline.design/jumpdomicopycopy-c30dc8dcb47b5c322c01e8ddd5c7ecf0/' frameborder='0' width='100%' height='100%'></iframe>
     </div>
     // <iframe src='https://my.spline.design/jumpdomi-70e6fbb39579c9c6e73db201aa5c0b22/' frameBorder='0' width='100%' height='100%'></iframe>
 
