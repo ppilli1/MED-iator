@@ -7,6 +7,10 @@ import MEDiator from "../assets/MED-iator.png";
 import { PROJECT1, PROJECT2 } from "../constants";
 import { MdArrowOutward } from "react-icons/md";
 import drmario from "../assets/drmario.webp"
+import { PiPrescription } from "react-icons/pi";
+import { MdOutlineLocalHospital } from "react-icons/md";
+
+
 
 const Dashboard = () => {
   const [text, count] = useTypewriter({
@@ -80,6 +84,7 @@ const Dashboard = () => {
                   alt={project.name}
                   className={project.imageClassName}
                 />
+                <PiPrescription className = "absolute inset-0 m-auto z-10 text-7xl text-white transition-opacity duration-300 group-hover:opacity-0 flex items-center justify-center"/>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 backdrop-blur-lg transition-opacity duration-300 hover:opacity-100">
                   <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center font-light tracking-tight">
                     {project.name}
@@ -125,6 +130,7 @@ const Dashboard = () => {
                   alt={project.name}
                   className={project.imageClassName}
                 />
+                <MdOutlineLocalHospital className = "absolute inset-0 m-auto z-10 text-7xl text-white transition-opacity duration-300 group-hover:opacity-0 flex items-center justify-center"/>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 backdrop-blur-lg transition-opacity duration-300 hover:opacity-100">
                   <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center font-light tracking-tight">
                     {project.name}
