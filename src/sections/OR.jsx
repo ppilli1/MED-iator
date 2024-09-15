@@ -369,11 +369,21 @@ const OR = () => {
           </div>
 
           {/* Spline Embed */}
-          <div className="h-2/4">
+          <div className="h-2/4 z-3">
             <Link to = "/PG">
               <iframe src='https://my.spline.design/cno1bottomcta-d2852393649091d6e5ee5337aaf2ebec/' frameBorder='0' width='100%' height='100%'></iframe>
             </Link>
           </div>
+          <Link
+            to = "/PG"
+            className="w-80 h-80 rounded-full flex items-center justify-center transition duration-200 z-1 absolute top-[55.5%] left-[65%]"
+          >
+            
+          </Link>
+          <span className="text-5xl my-custom-font font-[40px] tracking-tighter text-fuchsia-600 pl-[13rem] z-3">
+              Next Steps
+          </span>
+
           
         </div>
         
