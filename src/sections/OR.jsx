@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { FaArrowUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const API_KEY =
   "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";
@@ -219,7 +220,9 @@ const OR = () => {
 
           {/* Spline Embed */}
           <div className="h-2/4">
-            <iframe src='https://my.spline.design/cno1bottomcta-d2852393649091d6e5ee5337aaf2ebec/' frameBorder='0' width='100%' height='100%'></iframe>
+            <Link to = "/PG">
+              <iframe src='https://my.spline.design/cno1bottomcta-d2852393649091d6e5ee5337aaf2ebec/' frameBorder='0' width='100%' height='100%'></iframe>
+            </Link>
           </div>
           
         </div>

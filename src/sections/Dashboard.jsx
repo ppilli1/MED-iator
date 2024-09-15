@@ -26,7 +26,7 @@ const Dashboard = () => {
       </div>
       <div className="absolute -z-10 min-h-full w-full bg-gradient-to-r from-[#fbc2eb] to-[#a6c1ee]"></div>
       <div className="flex flex-col items-center justify-center mt-[120px]">
-        <h1 className="text-5xl lg:text-4xl font-semibold px-10 mb-4">
+        <h1 className="text-5xl lg:text-4xl font-light tracking-tight px-10 mb-4">
           <span className="text-fuchsia-800">{text}</span>
           <Cursor cursorColor="#F7AB0A" />
         </h1>
@@ -42,7 +42,7 @@ const Dashboard = () => {
             {PROJECT1.map((project) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20"
+                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-blue-700"
               >
                 <img
                   src={project.image}
@@ -50,7 +50,7 @@ const Dashboard = () => {
                   className={project.imageClassName}
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 backdrop-blur-lg transition-opacity duration-300 hover:opacity-100">
-                  <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center">
+                  <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center font-light tracking-tight">
                     {project.name}
                   </h3>
                   <p className="p-4 2xl:text-[1.125rem] 2xl:mb-12 xl:text-sm xl:mb-4 lg:text-[1rem] lg:mb-8 md:text-[0.92rem] md:mb-6 sm:text-[1rem] sm:mb-10 text-sm mb-2 tracking-tight font-light">
@@ -61,7 +61,7 @@ const Dashboard = () => {
                     className={project.buttonClassName}
                   >
                     <div className="z-10 flex items-center">
-                      <span className="2xl:text-[1.125rem] xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm">
+                      <span className="2xl:text-[1.125rem] xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm font-light tracking-tight">
                         Meds/Diagnosis
                       </span>
                       <MdArrowOutward />
@@ -86,7 +86,7 @@ const Dashboard = () => {
             {PROJECT2.map((project) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20"
+                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-rose-800"
               >
                 <img
                   src={project.image}
@@ -94,7 +94,7 @@ const Dashboard = () => {
                   className={project.imageClassName}
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 backdrop-blur-lg transition-opacity duration-300 hover:opacity-100">
-                  <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center">
+                  <h3 className="2xl:text-2xl 2xl:mb-10 xl:text-md xl:mb-2 lg:text-lg lg:mb-6 md:text-[1.05rem] md:mb-4 sm:text-xl sm:mb-8 text-lg text-center font-light tracking-tight">
                     {project.name}
                   </h3>
                   <p className="p-4 2xl:text-[1.125rem] 2xl:mb-12 xl:text-sm xl:mb-4 lg:text-[1rem] lg:mb-8 md:text-[0.92rem] md:mb-6 sm:text-[1rem] sm:mb-10 text-sm mb-2 font-light tracking-tight">
@@ -105,7 +105,7 @@ const Dashboard = () => {
                     className={project.buttonClassName}
                   >
                     <div className="z-10 flex items-center">
-                      <span className="2xl:text-lg xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm">
+                      <span className="2xl:text-lg xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm font-light tracking-tight">
                         Operation Room
                       </span>
                       <MdArrowOutward />

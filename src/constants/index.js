@@ -24,8 +24,12 @@ export const navigation = [
   export const NAVIGATION_LINKS = [
     { label: "Dashboard", href: "" },
     { label: "Medications/Diagnosis", href: "MD" },
-    { label: "Operation Room", href: "OR" }
+    { label: "Operation Room", href: "OR" },
   ];
+
+  export const NAVIGATION_LINK = [
+    { label: "Patient Game", href: "PG"}
+  ]
 
   export const PROJECT1 = [
     {

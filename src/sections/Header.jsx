@@ -34,7 +34,7 @@ const Header = () => {
                 <li key={index}>
                   <Link
                     to={item.href}
-                    className={`text-md font-light tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out ${
+                    className={`text-[1.05rem] font-light tracking-tight text-white hover:text-fuchsia-600 duration-300 ease-in-out ${
                       pathname.hash === index ? "text-fuchsia-600" : ""
                     }`}
                   >
