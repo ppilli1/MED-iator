@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { FaArrowUp } from "react-icons/fa";
 
@@ -8,16 +8,52 @@ const API_KEY =
 const MD = () => {
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I am ChatGPT!",
-      sender: "ChatGPT",
+      message: "Any Meeication Errors?",
+      sender: "ChatGPT1",
       direction: "incoming",
     },
   ]);
-
+  const [fetchedMessages, setFetchedMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [typing, setTyping] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef(null);
+
+  const fetchMessages = useCallback(async () => {
+    try {
+      const response = await fetch('../../assets/MD_medication_return.txt'); // Fetch from public folder
+      const text = await response.text(); // Read the file contents as text
+      const newMessages = text.split('\n').filter(Boolean); // Split by line and filter empty lines
+
+      // Only append messages that are new (not already in fetchedMessages)
+      const newUniqueMessages = newMessages.filter((msg) => !fetchedMessages.includes(msg));
+
+      // Update the state with new unique messages
+      setFetchedMessages((prevFetchedMessages) => [
+        ...prevFetchedMessages,
+        ...newUniqueMessages,
+      ]);
+
+      // Map new messages to the expected format and update the state
+      const formattedMessages = newUniqueMessages.map((msg) => ({
+        message: msg,
+        sender: "ChatGPT",
+        direction: "incoming",
+      }));
+
+      setMessages((prevMessages) => [...prevMessages, ...formattedMessages]);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
+  }, [fetchedMessages]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessages();
+    }, 10000);
+
+    return () => clearInterval(interval); // Clean up the interval on unmount
+  }, [fetchMessages]);
 
   // Scroll to the bottom whenever messages change
   useEffect(() => {
@@ -119,6 +155,7 @@ const MD = () => {
                                 ? "bg-pink-500 text-white"
                                 : "text-blue"
                         } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}>
+                            {/* PUT MESSAGE FOR MEDICATION ERROR */}
                             {message.message}
                         </div>
                     </div>
@@ -147,6 +184,7 @@ const MD = () => {
                                 ? "bg-pink-500 text-white"
                                 : "text-blue"
                         } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}>
+                            {/* PUT MESSAGE FOR DIAGNOSIS ERROR */}
                             {message.message}
                         </div>
                     </div>
@@ -188,6 +226,7 @@ const MD = () => {
                         : "bg-pink-500 text-white"
                     } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}
                   >
+                    {/* USE QUESTIONS FOR DOC */}
                     {message.message}
                   </div>
                 </div>
