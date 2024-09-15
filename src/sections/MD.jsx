@@ -98,7 +98,7 @@ const MD = () => {
       </div>
       <div className="absolute -z-10 min-h-full w-full bg-gradient-to-r from-[#fbc2eb] to-[#a6c1ee]"></div>
       <div className="flex items-start justify-center">
-        <h3 className="uppercase tracking-[20px] text-fuchsia-800 text-2xl mt-[120px] ml-6">
+        <h3 className="uppercase tracking-[20px] text-fuchsia-600 text-2xl mt-[120px] ml-6">
           Medications / Diagnosis
         </h3>
       </div>
@@ -202,7 +202,7 @@ const MD = () => {
               <div ref={messagesEndRef} />
             </div>
             {/* Text Input */}
-            <div className="px-4 py-4 flex justify-center items-center">
+            <div className="h-1/5 px-4 py-4 flex justify-center items-center">
               <div className="flex w-[95%] h-[100%] resize-none rounded-[1.25rem] border-[2px] border-pink-300 bg-white hover:border-pink-500 focus:outline-none transition-colors duration-300">
                 <textarea
                   value={inputMessage}
@@ -226,32 +226,6 @@ const MD = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="h-1/5 flex items-center justify-between px-4 py-2">
-              <textarea
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                className="w-full resize-none rounded-[1.25rem] border-[2px] border-slate-300 bg-white px-3 py-3 text-md focus:bg-white focus:text-black hover:border-slate-400 focus:outline-none transition-colors duration-300 overflow-y-scroll no-scrollbar"
-                placeholder="Type your message..."
-                rows="4"
-              >
-                <text className = "flex justify-end"></text>
-              </textarea>
-              <button
-                className={`ml-4 flex items-center justify-center p-4 rounded-lg border-[2px] border-stone-600 bg-white text-sm font-semibold text-stone-900 hover:bg-slate-300 active:bg-slate-300/50 transition-colors duration-300 ${
-                  isSending ? "cursor-not-allowed opacity-50" : ""
-                }`}
-                onClick={handleSend}
-                disabled={isSending}
-              >
-                {isSending ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    Send <FiSend className="ml-2" />
-                  </>
-                )}
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
