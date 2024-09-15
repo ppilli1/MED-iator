@@ -1,3 +1,0 @@
-"Diagnosis: Broken foot; Action: Prescribe pain relief medication."
-"Diagnosis: Tooth pain in the front right tooth; Action: Prescribed dental floss for oral hygiene."
-{"diagnosis": "broken foot", "further_information": "latest literature suggests that a broken foot can heal itself if left alone."}

@@ -13,6 +13,7 @@ from langchain_community.chat_models import ChatOpenAI
 from dotenv import load_dotenv 
 import sys
 import select
+import time
 
 
 
@@ -105,36 +106,39 @@ def transcription_worker(model, file_paths, events):
         time.sleep(0.5)  
         
 def metadata(text : str):
-    #put the metadata into the txt file using chat gpt not langchain
-    #return the meta data as a string
-    
     url = 'https://api.openai.com/v1/chat/completions'
     headers = {
-    "Content-Type" : "application/json",
-    "Authorization": "Bearer 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"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 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"
     }
 
-    diagnosis  = text
+    diagnosis = text
 
     data = {
         "model": "gpt-4o-mini",
-        "messages": [{"role": "system", "content": "The following prompt is part of a conversation between a patient and doctor. Please parse any important actions taken and list these actions in detail. One of the actions should be diagnsis. Another action should be medication. Include any further information as needed. Be as concise as possible and as specific as possible. Unless there is something super important said in the conversation, most of what you parse out should be a prescription given, a diagnosis given, or a medication reccomended / given. return these as a string."},
-                    {"role": "user", "content": diagnosis }
-
-                    ],
-
+        "messages": [
+            {"role": "system", "content": "The following prompt is part of a conversation between a patient and doctor..."},
+            {"role": "user", "content": diagnosis}
+        ],
         "temperature": 0.7
     }
+
     response = requests.post(url, headers=headers, json=data)
+    
+    # Print the response for debugging purposes
+    print(f"API Response: {response.json()}")
 
-    tt =  response.json()['choices'][0]['message']['content']
-    with open('./assets/MD_metadata.txt', 'a') as file:
-
-        file.write(tt)
-        file.write("\n")
-        
-        
-    return tt
+    # Safely handle missing keys
+    response_json = response.json()
+    if 'choices' in response_json:
+        tt = response_json['choices'][0]['message']['content']
+        with open('./assets/MD_metadata.txt', 'a') as file:
+            file.write(tt)
+            file.write("\n")
+        return tt
+    else:
+        print(f"Error: 'choices' not found in the response: {response_json}")
+        return "Error: Unable to retrieve metadata"
     
 def medication_errors(metadata : str):
     #use langchain with adding metadata to get the medication errors
@@ -212,9 +216,14 @@ def main2():
     
 
     try:
+        start_time = time.time()
         while True:
+            current_time = time.time()
             if is_spacebar_pressed():
                 print("Spacebar pressed, terminating stream...")
+                break
+            if current_time - start_time > 120:
+                print("1 minute has passed, exiting loop.")
                 break
             current_file_index = (current_file_index + 1) % 2 
             record_chunk(p, stream, file_paths[current_file_index], file_ready_events[current_file_index], chunk_length=10)
