@@ -323,7 +323,7 @@ const MD = () => {
             </span>
           </div>
           <div className="flex flex-col items-center justify-center">
-            <div className="box-border h-[366px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
+            <div className="box-border h-[366px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-all hover:shadow-2xl hover:shadow-pink-500 ease-in-out duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
               <div className="overflow-y-auto p-4">
                 {messages.map((message, index) => (
                   <div
@@ -361,7 +361,7 @@ const MD = () => {
                 Diagnosis
               </span>
             </div>
-            <div className="box-border h-[366px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
+            <div className="box-border h-[366px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-all hover:shadow-2xl hover:shadow-pink-500 ease-in-out duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex">
               <div className="overflow-y-auto p-4">
                 {messages1.map((message, index) => (
                   <div
@@ -402,7 +402,7 @@ const MD = () => {
               Clarifying Questions
             </span>
           </div>
-          <div className="box-border h-[800px] w-[700px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/50 hover:bg-slate-100 flex flex-col mb-[40px]">
+          <div className="box-border h-[800px] w-[700px] border-[4px] border-pink-300 hover:border-pink-500 transition-all hover:shadow-2xl hover:shadow-pink-500 ease-in-out duration-300 rounded-[1.25rem] bg-white/50 hover:bg-slate-100 flex flex-col mb-[40px]">
             {/* <div className = "h-1/10 flex items-center justify-center border-b-[2px]">
               <div className = "text-black text-2xl text-center">
                 bro

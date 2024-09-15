@@ -73,7 +73,7 @@ const Dashboard = () => {
             {PROJECT1.map((project) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-blue-700"
+                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-blue-700 hover:shadow-2xl hover:shadow-blue-700 transition-shadow duration-300 ease-in-out"
               >
                 <img
                   src={project.image}
@@ -118,7 +118,7 @@ const Dashboard = () => {
             {PROJECT2.map((project) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-rose-800"
+                className="group relative overflow-hidden rounded-3xl md:mx-auto sm:mx-20 border-[4px] border-rose-800 hover:shadow-2xl hover:shadow-rose-800 transition-shadow duration-300 ease-in-out"
               >
                 <img
                   src={project.image}

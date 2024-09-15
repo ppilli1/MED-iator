@@ -239,7 +239,7 @@ const OR = () => {
             </span>
           </div>
           <div className="flex justify-end">
-            <div className="box-border h-[800px] w-[700px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/50 hover:bg-slate-100 flex flex-col mb-[40px]">
+            <div className="box-border h-[800px] w-[700px] border-[4px] border-pink-300 hover:border-pink-500 transition-all hover:shadow-2xl hover:shadow-pink-500 ease-in-out duration-300 rounded-[1.25rem] bg-white/50 hover:bg-slate-100 flex flex-col mb-[40px]">
               {/* <div className = "h-1/10 flex items-center justify-center border-b-[2px]">
               <div className = "text-black text-2xl text-center">
                 bro
