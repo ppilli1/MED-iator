@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Lulo Clean Outline Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../Yellow Design Studio - Lulo Clean Outline Bold.woff') format('woff');
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
@@ -88,4 +95,9 @@
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
+}
+
+.my-custom-font {
+  font-family: 'Lulo Clean Outline Bold', sans-serif;
+  -webkit-text-stroke: 1px;
 }

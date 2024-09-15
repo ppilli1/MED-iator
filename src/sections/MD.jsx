@@ -327,7 +327,7 @@ const MD = () => {
       </div>
       <div className="absolute -z-10 min-h-full w-full bg-gradient-to-r from-[#fbc2eb] to-[#a6c1ee]"></div>
       <div className="flex items-start justify-center">
-        <h3 className="uppercase tracking-[20px] text-fuchsia-800 text-2xl mt-[120px] ml-6">
+        <h3 className="uppercase tracking-[20px] text-fuchsia-600 text-2xl mt-[120px] ml-6">
           Medications / Diagnosis
         </h3>
       </div>
@@ -425,6 +425,7 @@ const MD = () => {
                   
                 </div>
               ))}
+<<<<<<< HEAD
 
               {/* User Input */}
               
@@ -480,6 +481,42 @@ const MD = () => {
                   </div>
                 </div>
               </div>
+=======
+              {typing && (
+                <div className="flex justify-start mb-4">
+                  <div className="bg-[#E5E5EA] text-black p-3 rounded-[1.25rem] max-w-xs shadow-lg">
+                    ChatGPT is typing...
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+            {/* Text Input */}
+            <div className="h-1/5 px-4 py-4 flex justify-center items-center">
+              <div className="flex w-[95%] h-[100%] resize-none rounded-[1.25rem] border-[2px] border-pink-300 bg-white hover:border-pink-500 focus:outline-none transition-colors duration-300">
+                <textarea
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  className="w-[92%] px-3 py-3 text-md rounded-[1.25rem] focus:bg-white focus:text-black focus:outline-none overflow-y-scroll no-scrollbar resize-none"
+                  placeholder="Type your message..."
+                  rows="4"
+                >
+                  <text className="flex justify-end"></text>
+                </textarea>
+                <div className="flex py-3 items-start justify-end w-[8%] mr-3">
+                  <button
+                    className={`rounded-3xl bg-pink-500 p-1 hover:bg-pink-700 active:bg-pink-700/50 transition-colors duration-300 focus:outline-none ${
+                      isSending ? "cursor-not-allowed opacity-50" : ""
+                    }`}
+                    onClick={handleSend}
+                    disabled={isSending}
+                  >
+                    <FaArrowUp className="text-white font-semibold text-lg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+>>>>>>> 443607815b80fb100918d1ab2552ff2a625bcbad
           </div>
           
         </div>

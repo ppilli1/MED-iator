@@ -15,7 +15,7 @@ const Header = () => {
             {/* <div> */}
             <Link
               to="/"
-              className="roboto-slab-normal text-3xl tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out"
+              className="my-custom-font text-2xl tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out"
             >
               MED-iator
             </Link>
@@ -35,7 +35,7 @@ const Header = () => {
                   <Link
                     to={item.href}
                     className={`text-md font-light tracking-wide text-white hover:text-fuchsia-600 duration-300 ease-in-out ${
-                      pathname.hash === index ? "text-fuchsia-300" : ""
+                      pathname.hash === index ? "text-fuchsia-600" : ""
                     }`}
                   >
                     {item.label}
