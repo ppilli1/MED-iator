@@ -101,7 +101,7 @@ const Dashboard = () => {
                     {project.description}
                   </p>
                   <Link
-                    to = "/#OR"
+                    to = "/OR"
                     className={project.buttonClassName}
                   >
                     <div className="z-10 flex items-center">
