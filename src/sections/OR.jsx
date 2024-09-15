@@ -334,7 +334,7 @@ const OR = () => {
           </div>
           
           <div className="flex flex-col items-center justify-center">
-            <div className="box-border h-[250px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[25px]">
+            <div className="box-border h-[250px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 hover:shadow-2xl hover:shadow-pink-500 transition-all duration-300 ease-in-out rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[25px]">
               <div className="overflow-y-auto p-4">
                 {messages1.map((message, index) => (
                   <div
@@ -380,9 +380,11 @@ const OR = () => {
           >
             
           </Link>
-          <span className="text-5xl my-custom-font font-[40px] tracking-tighter text-fuchsia-600 pl-[13rem] z-3">
+          <div className = "flex items-center justify-center">
+          <Link to = "/PG" className="text-5xl my-custom-font font-[40px] tracking-tighter text-fuchsia-600 z-3">
               Next Steps
-          </span>
+          </Link>
+          </div>
 
           
         </div>
