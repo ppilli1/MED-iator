@@ -175,12 +175,13 @@ const OR = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 bg-transparent"> {/* Ensure background is transparent */}
           <div className="flex justify-center items-center mb-10">
             <span className="text-2xl my-custom-font font-[10px] tracking-tighter text-fuchsia-600">
               Actionable Errors
             </span>
           </div>
+          
           <div className="flex flex-col items-center justify-center">
             <div className="box-border h-[250px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[25px]">
               <div className="overflow-y-auto p-4">
@@ -188,15 +189,13 @@ const OR = () => {
                   <div
                     key={index}
                     className={`flex mb-4 ${
-                      message.direction === "incoming"
-                        ? "justify-center"
-                        : "hidden"
+                      message.direction === "incoming" ? "justify-center" : "hidden"
                     }`}
                   >
                     <div
                       className={`${
-                        message.direction === "incoming"
-                          ? "bg-pink-500 text-white"
+                        message.direction === "incoming" 
+                          ? "bg-pink-500 text-white" 
                           : "text-blue"
                       } p-3 rounded-[1.25rem] max-w-lg shadow-lg`}
                     >
@@ -204,6 +203,7 @@ const OR = () => {
                     </div>
                   </div>
                 ))}
+                
                 {typing && (
                   <div className="flex justify-start mb-4">
                     <div className="bg-pink-500 text-white p-3 rounded-[1.25rem] max-w-xs shadow-lg">
@@ -211,11 +211,19 @@ const OR = () => {
                     </div>
                   </div>
                 )}
+                
                 <div ref={messagesEndRef} />
               </div>
             </div>
           </div>
+
+          {/* Spline Embed */}
+          <div className="h-2/4">
+            <iframe src='https://my.spline.design/cno1bottomcta-d2852393649091d6e5ee5337aaf2ebec/' frameBorder='0' width='100%' height='100%'></iframe>
+          </div>
+          
         </div>
+        
       </div>
     </div>
   );
