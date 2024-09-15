@@ -381,7 +381,7 @@ const OR = () => {
             
           </Link>
           <div className = "flex items-center justify-center">
-          <Link to = "/PG" className="text-5xl my-custom-font font-[40px] tracking-tighter text-fuchsia-600 z-3">
+          <Link to = "/PG" className="text-5xl my-custom-font font-[40px] tracking-tighter text-fuchsia-500 z-3 transition-colors hover:text-fuchsia-700 duration-300 ease-in-out">
               Next Steps
           </Link>
           </div>
