@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { FaArrowUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -32,26 +32,151 @@ const OR = () => {
     }
   };
 
-  const handleSend = async () => {
-    if (!inputMessage.trim()) return;
 
-    const newMessage = {
+
+
+  const [messages1, setMessages1] = useState([
+    {
+      message: "Any Surgery Errors?",
+      sender: "ChatGPT2",
+      direction: "incoming",
+    },
+  ]);
+  const [fetchedMessages1, setFetchedMessages1] = useState([]);
+
+  const fetchMessages1 = useCallback(async () => {
+    try {
+      const response = await fetch('../../assets/OR_error_return.txt'); // Fetch from public folder
+      const text1 = await response.text(); // Read the file contents as text
+      const newMessages = text1.split('\n').filter(Boolean); // Split by line and filter empty lines
+
+      // Only append messages that are new (not already in fetchedMessages)
+      const newUniqueMessages = newMessages.filter((msg) => !fetchedMessages1.includes(msg));
+
+      // Update the state with new unique messages
+      setFetchedMessages1((prevFetchedMessages) => [
+        ...prevFetchedMessages,
+        ...newUniqueMessages,
+      ]);
+
+      // Map new messages to the expected format and update the state
+      const formattedMessages = newUniqueMessages.map((msg) => ({
+        message: msg,
+        sender: "ChatGPT2",
+        direction: "incoming",
+      }));
+
+      setMessages1((prevMessages) => [...prevMessages, ...formattedMessages]);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
+  }, [fetchedMessages1]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessages1();
+    }, 1000);
+
+    return () => clearInterval(interval); // Clean up the interval on unmount
+  }, [fetchMessages1]);
+
+
+
+
+
+
+
+  const [messages2, setMessages2] = useState([
+    {
+      message: "Any Questions?",
+      sender: "ChatGPT3",
+      direction: "incoming",
+    },
+  ]);
+  const [fetchedMessages2, setFetchedMessages2] = useState([]);
+  
+  // Initialize the chatHistory with the first message
+  const [chatHistory, setChatHistory] = useState([
+    {
+      message: "Send anything to start your question stream!",
+      sender: "ChatGPT3",
+      direction: "incoming",
+    },
+  ]); 
+  
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(1); // Start at index 1 since the first message is already in chatHistory
+  // const [inputMessage, setInputMessage] = useState('');
+  // const [isSending, setIsSending] = useState(false);
+  
+  // Fetch New Messages (unchanged)
+  const fetchMessages2 = useCallback(async () => {
+    try {
+      const response = await fetch('../../assets/MD_question_return.txt');
+      const text2 = await response.text();
+      const newMessages = text2.split('\n').filter(Boolean);
+  
+      const newUniqueMessages = newMessages.filter((msg) => !fetchedMessages2.includes(msg));
+  
+      setFetchedMessages2((prevFetchedMessages) => [
+        ...prevFetchedMessages,
+        ...newUniqueMessages,
+      ]);
+  
+      const formattedMessages = newUniqueMessages.map((msg) => ({
+        message: msg,
+        sender: "ChatGPT3",
+        direction: "incoming",
+      }));
+  
+      setMessages2((prevMessages) => [...prevMessages, ...formattedMessages]);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
+  }, [fetchedMessages2]);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessages2();
+    }, 1000);
+  
+    return () => clearInterval(interval);
+  }, [fetchMessages2]);
+  
+  // Handle Send Message
+  const handleSend = () => {
+    if (!inputMessage.trim()) return; // Prevent empty responses
+    setIsSending(true);
+  
+    // Add user's response to the chat history
+    const userMessage = {
       message: inputMessage,
-      sender: "user",
+      sender: "User",
       direction: "outgoing",
     };
-
-    const newMessages = [...messages, newMessage];
-
-    // Update the state
-    setMessages(newMessages);
-    setInputMessage("");
-    setIsSending(true);
-    setTyping(true);
-
-    // Send message to ChatGPT and wait for a response
-    await processMessageToChatGPT(newMessages);
+    setChatHistory((prevHistory) => [...prevHistory, userMessage]);
+  
+    // Clear input
+    setInputMessage('');
+  
+    // Move to the next bot message
+    const nextMessage = messages2[currentMessageIndex];
+    if (nextMessage) {
+      setChatHistory((prevHistory) => [...prevHistory, nextMessage]);
+      setCurrentMessageIndex((prevIndex) => prevIndex + 1);
+    }
+  
+    setIsSending(false);
   };
+
+
+
+
+
+
+
+
+
+
 
   async function processMessageToChatGPT(chatMessages) {
     let apiMessages = chatMessages.map((messageObject) => {
@@ -90,6 +215,9 @@ const OR = () => {
         setTyping(false);
         setIsSending(false);
       });
+
+
+
   }
 
   return (
@@ -119,14 +247,11 @@ const OR = () => {
             </div> */}
               {/* Message List */}
               <div className="h-4/5 overflow-y-auto p-4">
-                {messages.map((message, index) => (
+                {/* Display the chat history */}
+                {chatHistory.map((message, index) => (
                   <div
                     key={index}
-                    className={`flex mb-4 ${
-                      message.direction === "incoming"
-                        ? "justify-start"
-                        : "justify-end"
-                    }`}
+                    className={`flex mb-4 ${message.direction === "incoming" ? "justify-start" : "justify-end"}`}
                   >
                     <div
                       className={`${
@@ -137,33 +262,56 @@ const OR = () => {
                     >
                       {message.message}
                     </div>
+                    
                   </div>
                 ))}
-                {typing && (
-                  <div className="flex justify-start mb-4">
-                    <div className="bg-[#E5E5EA] text-black p-3 rounded-[1.25rem] max-w-xs shadow-lg">
-                      ChatGPT is typing...
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
+
+
+                {/* User Input */}
+                
               </div>
-              {/* Text Input */}
-              <div className="h-1/5 px-4 py-4 flex justify-center items-center">
+              {/* <div className="h-1/5 flex items-center justify-between px-4 py-2">
+                <textarea
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  className="w-full resize-none rounded-[1.25rem] border-[2px] border-slate-300 bg-white px-3 py-3 text-md focus:bg-white focus:text-black hover:border-slate-400 focus:outline-none transition-colors duration-300 overflow-y-scroll no-scrollbar"
+                  placeholder="Type your message..."
+                  rows="4"
+                >
+                  <text className = "flex justify-end"></text>
+                </textarea>
+                <button
+                  className={`ml-4 flex items-center justify-center p-4 rounded-lg border-[2px] border-stone-600 bg-white text-sm font-semibold text-stone-900 hover:bg-slate-300 active:bg-slate-300/50 transition-colors duration-300 ${
+                    isSending ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                  onClick={handleSend}
+                  disabled={isSending}
+                >
+                  {isSending ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send <FiSend className="ml-2" />
+                    </>
+                  )}
+                </button>
+              </div> */}
+              <div className="px-4 py-4 flex justify-center items-center">
+                  
                 <div className="flex w-[95%] h-[100%] resize-none rounded-[1.25rem] border-[2px] border-pink-300 bg-white hover:border-pink-500 focus:outline-none transition-colors duration-300">
+                  
                   <textarea
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     className="w-[92%] px-3 py-3 text-md rounded-[1.25rem] focus:bg-white focus:text-black focus:outline-none overflow-y-scroll no-scrollbar resize-none"
-                    placeholder="Type your message..."
+                    placeholder="Type your response..."
                     rows="4"
-                  >
-                    <text className="flex justify-end"></text>
-                  </textarea>
+                  />
                   <div className="flex py-3 items-start justify-end w-[8%] mr-3">
+                    
                     <button
                       className={`rounded-3xl bg-pink-500 p-1 hover:bg-pink-700 active:bg-pink-700/50 transition-colors duration-300 focus:outline-none ${
-                        isSending ? "cursor-not-allowed opacity-50" : ""
+                        isSending ? 'cursor-not-allowed opacity-50' : ''
                       }`}
                       onClick={handleSend}
                       disabled={isSending}
@@ -172,6 +320,8 @@ const OR = () => {
                     </button>
                   </div>
                 </div>
+                
+            
               </div>
             </div>
           </div>
@@ -186,11 +336,11 @@ const OR = () => {
           <div className="flex flex-col items-center justify-center">
             <div className="box-border h-[250px] w-[600px] border-[4px] border-pink-300 hover:border-pink-500 transition-colors duration-300 rounded-[1.25rem] bg-white/25 hover:bg-white/50 flex mb-[25px]">
               <div className="overflow-y-auto p-4">
-                {messages.map((message, index) => (
+                {messages1.map((message, index) => (
                   <div
                     key={index}
                     className={`flex mb-4 ${
-                      message.direction === "incoming" ? "justify-center" : "hidden"
+                      message.direction === "incoming" ? "justify-start" : "hidden"
                     }`}
                   >
                     <div

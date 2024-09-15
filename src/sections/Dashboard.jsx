@@ -19,6 +19,37 @@ const Dashboard = () => {
     delaySpeed: 1000,
   });
 
+
+  const handleClick_md = async () => {
+    const response = await fetch('http://127.0.0.1:5161/MD', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+  };
+
+  const handleClick_or = async () => {
+    try {
+      const response = await fetch('http://localhost:5161/OR', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}), // Since you're not sending any data, an empty body is fine.
+      });
+
+      if (response.ok) {
+        console.log('Request sent successfully');
+      } else {
+        console.log('Failed to send request');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden text-white antialiased selection:bg-rose-300 selection:text-rose-800 hide-scrollbar">
       <div className="fixed top-0 -z-5 h-full w-full">
@@ -59,6 +90,7 @@ const Dashboard = () => {
                   <Link
                     to = "/MD"
                     className={project.buttonClassName}
+                    onClick={handleClick_md}
                   >
                     <div className="z-10 flex items-center">
                       <span className="2xl:text-[1.125rem] xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm font-light tracking-tight">
@@ -103,6 +135,7 @@ const Dashboard = () => {
                   <Link
                     to = "/OR"
                     className={project.buttonClassName}
+                    onClick={handleClick_or}
                   >
                     <div className="z-10 flex items-center">
                       <span className="2xl:text-lg xl:text-sm lg:text-[1rem] md:text-sm sm:text-[1rem] text-sm font-light tracking-tight">

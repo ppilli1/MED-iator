@@ -11,7 +11,7 @@ import re
 import requests
 from langchain_community.chat_models import ChatOpenAI
 from dotenv import load_dotenv 
-
+import time
 load_dotenv()
 
 api_key = os.getenv("OPENAI_API_KEY")
@@ -107,7 +107,7 @@ def metadata(text : str):
     url = 'https://api.openai.com/v1/chat/completions'
     headers = {
     "Content-Type" : "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
     }
 
     diagnosis  = text
@@ -182,8 +182,13 @@ def main2():
     transcription_thread.start()
 
     try:
+        start_time = time.time()
         while True:
+            current_time = time.time()
             
+            if current_time - start_time > 120:
+                print("1 minute has passed, exiting loop.")
+                break
             current_file_index = (current_file_index + 1) % 2 
             record_chunk(p, stream, file_paths[current_file_index], file_ready_events[current_file_index], chunk_length=5)
 
