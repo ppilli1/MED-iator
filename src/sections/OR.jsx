@@ -221,7 +221,7 @@ const OR = () => {
   }
 
   return (
-    <div className="relative min-h-screen overflow-y-scroll no-scrollbar text-white antialiased selection:bg-rose-300 selection:text-rose-800">
+    <div className="relative min-h-screen overflow-y-hidden no-scrollbar text-white antialiased selection:bg-rose-300 selection:text-rose-800">
       <div className="fixed top-0 -z-5 h-full w-full">
         <ParticlesBackground />
       </div>
